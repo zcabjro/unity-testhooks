@@ -1,0 +1,17 @@
+#!/bin/env python
+
+import subprocess
+import sys
+
+try:
+  subprocess.check_output("python test.py", shell=True)
+  exitcode = 0
+except subprocess.CalledProcessError as e:
+  exitcode = e.returncode
+
+if exitcode == 0:
+  print("Testing passed (proceeding with commit)")
+else:
+  print("Testing failed (aborting commit)")
+
+sys.exit(exitcode)
